@@ -206,3 +206,31 @@ ejercicio(28)
 clientes = Clientes.objects.all().exclude(email__isnull=True, telefono__isnull=True)
 for cliente in clientes:
     print(f"{cliente.apellido} {cliente.nombre} {cliente.telefono} {cliente.email}")
+
+# EJERCICIO 29
+
+ejercicio(29)
+clientes = Clientes.objects.all().exclude(nombre__regex=r'^(M|P)[A-Z]*').exclude(apellido__startswith='B')
+for cliente in clientes:
+    print(f"{cliente.nombre} {cliente.apellido}")
+
+# EJERCICIO 30
+
+ejercicio(30)
+plantas = Plantas.objects.all().filter(stock__range=(10, 30))
+for planta in plantas:
+    print(f"{planta.descripcion} {planta.stock}")
+
+# EJERCICIO 31
+ejercicio(31)
+clientes = Clientes.objects.all()
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} --- {cliente.cod_calle.nombre} {cliente.altura}")
+
+
+# EJERCICIO 32
+ejercicio(32)
+clientes = Clientes.objects.all()
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} --- {cliente.cod_barrio.nombre} {cliente.cod_barrio.nombre}")
+
