@@ -3,42 +3,54 @@ from decimal import Decimal
 
 from confApp.models import *
 
+
+def ejercicio(numero):
+    print(f"\n-----EJERCICIO {numero}-----")
+
+
 # EJERCICIO 1
 
+ejercicio(1)
 clientes = Clientes.objects.values_list('cod_cliente', 'apellido', 'nombre').order_by('cod_cliente')
 for cliente in clientes:
     print(cliente)
 
 # EJERCICIO 2
 
+ejercicio(2)
 clientes = Clientes.objects.all().order_by('apellido', 'nombre')
 for cliente in clientes:
     print(f"CODIGO: {cliente.cod_cliente}, APELLIDO: {cliente.nombre}, NOMBRE: {cliente.nombre}")
 
 # EJERCICIO 3
 
+ejercicio(3)
 plantas = Plantas.objects.values_list('cod_planta', 'descripcion', 'precio').order_by('cod_planta')
 for planta in plantas:
     print(planta)
 
 # EJERCICIO 4
 
+ejercicio(4)
 plantas = Plantas.objects.all().order_by('descripcion')
 for planta in plantas:
     print(f"DESCRIPCION: {planta.descripcion}, STOCK: {planta.stock}")
 
 # EJERCICIO 5
 
+ejercicio(5)
 localidades = Localidades.objects.all().order_by('nombre')
 for localidad in localidades:
     print(localidad.nombre)
 
 # EJERCICIO 6
 
+ejercicio(6)
 clientes = Clientes.objects.all()
 
 # EJERCICIO 7
 
+ejercicio(7)
 plantas = Plantas.objects.all()
 for planta in plantas:
     precio_off = (planta.precio - (planta.precio * Decimal(0.10))).__round__(2)
@@ -47,6 +59,7 @@ for planta in plantas:
 
 # EJERCICIO 8
 
+ejercicio(8)
 plantas = Plantas.objects.all()
 for planta in plantas:
     precio_total = (Decimal(planta.precio) * planta.precio).__round__(2)
@@ -54,36 +67,42 @@ for planta in plantas:
 
 # EJERCICIO 9
 
+ejercicio(9)
 deudores = Clientes.objects.all().filter(deudor='S')
 for deudor in deudores:
     print(deudor.nombre)
 
 # EJERCICIO 10
 
+ejercicio(10)
 plantas = Plantas.objects.all().filter(stock__gt=20).order_by('stock')
 for planta in plantas:
     print(f"{planta.descripcion}, STOCK: {planta.stock}")
 
 # EJERCICIO 11
 
+ejercicio(11)
 plantas = Plantas.objects.all().exclude(stock=30).order_by('cod_planta')
 for planta in plantas:
     print(f"{planta.descripcion}, STOCK: {planta.stock}")
 
 # EJERCICIO 12
 
+ejercicio(12)
 facturas = Facturas.objects.all().filter(fecha__gt=datetime.date(2009, 6, 1))
 for factura in facturas:
     print(f"{factura.nro_factura} {factura.fecha}")
 
 # EJERCICIO 13
 
+ejercicio(13)
 plantas = Plantas.objects.all().filter(stock__lt=10)
 for planta in plantas:
     print(f"{planta.descripcion} STOCK: {planta.stock}")
 
 # EJERCICIO 14
 
+ejercicio(14)
 date_start = datetime.date(2008, 6, 1)
 date_end = datetime.date(2010, 3, 1)
 facturas = Facturas.objects.all().filter(fecha__range=(date_start, date_end))
@@ -92,11 +111,43 @@ for factura in facturas:
 
 # EJERCICIO 15
 
+ejercicio(15)
 plantas = Plantas.objects.all().filter(precio__range=(20, 70))
 for planta in plantas:
     print(f"{planta.descripcion} {planta.precio}")
 
 # EJERCICIO 16
+
+ejercicio(16)
 plantas = Plantas.objects.all().filter(stock__range=(5, 10))
 for planta in plantas:
     print(f"{planta.descripcion} {planta.stock}")
+
+# EJERCICIO 17
+
+ejercicio(17)
+clientes = Clientes.objects.all().filter(apellido__startswith='F')
+for cliente in clientes:
+    print(cliente.apellido)
+
+# EJERCICIO 18
+
+ejercicio(18)
+clientes = Clientes.objects.all().filter(nombre__contains='U')
+for cliente in clientes:
+    print(cliente.nombre)
+
+# EJERCICIO 19
+
+ejercicio(19)
+clientes = Clientes.objects.all().exclude(apellido__regex=r'^[a-cA-C].*$')
+for cliente in clientes:
+    print(cliente.apellido)
+
+# EJERCICIO 20
+
+ejercicio(20)
+clientes = Clientes.objects.all().filter(apellido__endswith='EZ')
+for cliente in clientes:
+    print(cliente.apellido)
+
