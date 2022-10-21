@@ -1,3 +1,4 @@
+import datetime
 from decimal import Decimal
 
 from confApp.models import *
@@ -45,7 +46,32 @@ for planta in plantas:
         f"CODIGO PLANTA: {planta.cod_planta}, TIPO DE PLANTA: {planta.cod_tipo_planta} DESCRIPCION: {planta.descripcion}, PRECIO: {planta.precio}, OFERTA: {precio_off}, STOCK: {planta.stock}")
 
 # EJERCICIO 8
+
 plantas = Plantas.objects.all()
 for planta in plantas:
     precio_total = (Decimal(planta.precio) * planta.precio).__round__(2)
     print(f"{planta.descripcion}, PRECIO: {planta.precio}, STOCK: {planta.stock} PRECIO TOTAL: {precio_total}")
+
+# EJERCICIO 9
+
+deudores = Clientes.objects.all().filter(deudor='S')
+for deudor in deudores:
+    print(deudor.nombre)
+
+# EJERCICIO 10
+
+plantas = Plantas.objects.all().filter(stock__gt=20).order_by('stock')
+for planta in plantas:
+    print(f"{planta.descripcion}, STOCK: {planta.stock}")
+
+# EJERCICIO 11
+
+plantas = Plantas.objects.all().exclude(stock=30).order_by('cod_planta')
+for planta in plantas:
+    print(f"{planta.descripcion}, STOCK: {planta.stock}")
+
+# EJERCICIO 12
+
+facturas = Facturas.objects.all().filter(fecha__gt=datetime.date(2009, 6, 1))
+for factura in facturas:
+    print(f"{factura.nro_factura} {factura.fecha}")
