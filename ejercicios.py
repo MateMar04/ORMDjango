@@ -140,7 +140,7 @@ for cliente in clientes:
 # EJERCICIO 19
 
 ejercicio(19)
-clientes = Clientes.objects.all().exclude(apellido__regex=r'^[a-cA-C].*$')
+clientes = Clientes.objects.all().exclude(apellido__regex=r'^[A-C].*$')
 for cliente in clientes:
     print(cliente.apellido)
 
@@ -150,4 +150,32 @@ ejercicio(20)
 clientes = Clientes.objects.all().filter(apellido__endswith='EZ')
 for cliente in clientes:
     print(cliente.apellido)
+
+# EJERCICIO 21
+
+ejercicio(21)
+clientes = Clientes.objects.all().exclude(apellido__startswith='P').order_by('apellido')
+for cliente in clientes:
+    print(cliente.apellido)
+
+# EJERCICIO 22
+
+ejercicio(22)
+clientes = Clientes.objects.all().exclude(apellido__regex=r'^(P|Z)[A-Z]*').order_by('apellido')
+for cliente in clientes:
+    print(cliente.apellido)
+
+# EJERCICIO 23
+
+ejercicio(23)
+clientes = Clientes.objects.all().filter(telefono__isnull=True)
+for cliente in clientes:
+    print(f"{cliente.nombre} {cliente.telefono}")
+
+# EJERCICIO 24
+
+ejercicio(24)
+clientes = Clientes.objects.all().filter(email__isnull=False)
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} {cliente.email}")
 
