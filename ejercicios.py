@@ -75,3 +75,28 @@ for planta in plantas:
 facturas = Facturas.objects.all().filter(fecha__gt=datetime.date(2009, 6, 1))
 for factura in facturas:
     print(f"{factura.nro_factura} {factura.fecha}")
+
+# EJERCICIO 13
+
+plantas = Plantas.objects.all().filter(stock__lt=10)
+for planta in plantas:
+    print(f"{planta.descripcion} STOCK: {planta.stock}")
+
+# EJERCICIO 14
+
+date_start = datetime.date(2008, 6, 1)
+date_end = datetime.date(2010, 3, 1)
+facturas = Facturas.objects.all().filter(fecha__range=(date_start, date_end))
+for factura in facturas:
+    print(f"{factura.nro_factura} {factura.fecha}")
+
+# EJERCICIO 15
+
+plantas = Plantas.objects.all().filter(precio__range=(20, 70))
+for planta in plantas:
+    print(f"{planta.descripcion} {planta.precio}")
+
+# EJERCICIO 16
+plantas = Plantas.objects.all().filter(stock__range=(5, 10))
+for planta in plantas:
+    print(f"{planta.descripcion} {planta.stock}")
