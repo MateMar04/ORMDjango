@@ -4,8 +4,8 @@ from decimal import Decimal
 from confApp.models import *
 
 
-def ejercicio(numero):
-    print(f"\n-----EJERCICIO {numero}-----")
+def ejercicio(n):
+    print(f"\n-----EJERCICIO {n}-----")
 
 
 # EJERCICIO 1
@@ -179,3 +179,30 @@ clientes = Clientes.objects.all().filter(email__isnull=False)
 for cliente in clientes:
     print(f"{cliente.apellido} {cliente.nombre} {cliente.email}")
 
+# EJERCICIO 25
+
+ejercicio(25)
+clientes = Clientes.objects.all().filter(telefono__isnull=False)
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} {cliente.nombre}")
+
+# EJERCICIO 26
+
+ejercicio(26)
+plantas = Plantas.objects.all().filter(descripcion__startswith='R', precio__gt=7)
+for planta in plantas:
+    print(f"{planta.descripcion} {planta.precio}")
+
+# EJERCICIO 27
+
+ejercicio(27)
+plantas = Plantas.objects.all().exclude(precio__gt=30, precio__lt=80).order_by('cod_planta')
+for planta in plantas:
+    print(f"{planta.cod_planta} {planta.descripcion} {planta.precio}")
+
+# EJERCICIO 28
+
+ejercicio(28)
+clientes = Clientes.objects.all().exclude(email__isnull=True, telefono__isnull=True)
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} {cliente.telefono} {cliente.email}")
