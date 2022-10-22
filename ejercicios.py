@@ -261,3 +261,35 @@ ejercicio(36)
 clientes = Clientes.objects.all().filter(cod_localidad__nombre='AREQUITO')
 for cliente in clientes:
     print(f"{cliente.nombre} {cliente.apellido} --- {cliente.cod_localidad.nombre}")
+
+# EJERCICIO 37
+
+ejercicio(37)
+clientes = Clientes.objects.all().filter(cod_condicion_iva__descripcion='MONOTRIBUTISTA').order_by('cod_localidad')
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre} {cliente.cod_localidad.nombre} {cliente.cod_barrio.nombre} {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
+
+# EJERCICIO 38
+
+ejercicio(38)
+clientes = Clientes.objects.all().filter(cod_localidad__nombre='CORDOBA', apellido__startswith='A')
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre} {cliente.cod_localidad.nombre} {cliente.cod_barrio.nombre} {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
+
+# EJERCICIO 39
+
+ejercicio(39)
+clientes = Clientes.objects.all().filter(cod_localidad__nombre='CORDOBA')  # REVISAR
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
+
+# EJERCICIO 40
+
+ejercicio(40)
+clientes = Clientes.objects.all().exclude(cod_localidad__nombre='AREQUITO')  # REVISAR
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
