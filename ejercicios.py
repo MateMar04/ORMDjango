@@ -281,7 +281,8 @@ for cliente in clientes:
 # EJERCICIO 39
 
 ejercicio(39)
-clientes = Clientes.objects.all().filter(cod_localidad__nombre='CORDOBA')  # REVISAR
+clientes = Clientes.objects.all().filter(cod_localidad__nombre='CORDOBA') | Clientes.objects.all().filter(
+    cod_localidad__nombre='CARLOS PAZ') | Clientes.objects.all().filter(cod_localidad__nombre='ALTA GRACIA')
 for cliente in clientes:
     print(
         f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
@@ -289,7 +290,8 @@ for cliente in clientes:
 # EJERCICIO 40
 
 ejercicio(40)
-clientes = Clientes.objects.all().exclude(cod_localidad__nombre='AREQUITO')  # REVISAR
+clientes = Clientes.objects.all().exclude(cod_localidad__nombre='AREQUITO') & Clientes.objects.all().exclude(
+    cod_localidad__nombre='MERLO')
 for cliente in clientes:
     print(
         f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
@@ -322,7 +324,8 @@ for cliente in clientes:
 # EJERCICIO 44
 
 ejercicio(44)
-clientees = Clientes.objects.all().filter(cod_barrio__nombre='ALBERDI')  # REVISAR
+clientes = Clientes.objects.all().filter(cod_barrio__nombre='ALTO ALBERDI') | Clientes.objects.all().filter(
+    cod_barrio__nombre='ALTA CORDOBA') & Clientes.objects.all().filter(telefono__isnull=False)
 for cliente in clientes:
     print(
         f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
