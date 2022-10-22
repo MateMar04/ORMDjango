@@ -293,3 +293,36 @@ clientes = Clientes.objects.all().exclude(cod_localidad__nombre='AREQUITO')  # R
 for cliente in clientes:
     print(
         f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
+
+# EJERCICIO 41
+
+ejercicio(41)
+clientes = Clientes.objects.all().filter(cod_localidad__nombre='CORDOBA').exclude(
+    apellido__regex=r'^[D-P][A-Z]*').order_by('cod_barrio')
+for cliente in clientes:
+    print(f"{cliente.nombre} {cliente.apellido} --- {cliente.cod_barrio.nombre}")
+
+# EJERCICIO 42
+
+ejercicio(42)
+detalles = DetallesFacturas.objects.all()
+for detalle in detalles:
+    precio_total = (detalle.cantidad * detalle.cod_planta.precio)
+    print(f"CANTIDAD: {detalle.cantidad} PRECIO: {detalle.cod_planta.precio} PRECIO TOTAL: {precio_total}")
+
+# EJERCICIO 43
+
+ejercicio(43)
+clientes = Clientes.objects.all().filter(cod_provincia__nombre__startswith='SAN').filter(
+    cod_condicion_iva__descripcion='MONOTRIBUTISTA')
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
+
+# EJERCICIO 44
+
+ejercicio(44)
+clientees = Clientes.objects.all().filter(cod_barrio__nombre='ALBERDI')  # REVISAR
+for cliente in clientes:
+    print(
+        f"{cliente.cuit} --- {cliente.nombre} {cliente.apellido} --- {cliente.cod_provincia.nombre}, {cliente.cod_localidad.nombre}, {cliente.cod_barrio.nombre}, {cliente.cod_calle.nombre} {cliente.altura} --- {cliente.telefono} {cliente.email} --- {cliente.deudor} {cliente.cod_condicion_iva.descripcion}")
