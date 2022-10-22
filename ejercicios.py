@@ -227,10 +227,37 @@ clientes = Clientes.objects.all()
 for cliente in clientes:
     print(f"{cliente.apellido} {cliente.nombre} --- {cliente.cod_calle.nombre} {cliente.altura}")
 
-
 # EJERCICIO 32
+
 ejercicio(32)
 clientes = Clientes.objects.all()
 for cliente in clientes:
     print(f"{cliente.apellido} {cliente.nombre} --- {cliente.cod_barrio.nombre} {cliente.cod_barrio.nombre}")
 
+# EJERCICIO 33
+
+ejercicio(33)
+clientes = Clientes.objects.all()
+for cliente in clientes:
+    print(f"{cliente.apellido} {cliente.nombre} --- {cliente.cod_barrio.nombre}")
+
+# EJERCICIO 34
+
+ejercicio(34)
+facturas = Facturas.objects.all().filter(cod_forma_pago__descripcion='EFECTIVO').order_by('cod_cliente')
+for factura in facturas:
+    print(f"{factura.nro_factura} --- {factura.cod_forma_pago.descripcion}")
+
+# EJERCICIO 35
+
+ejercicio(35)
+plantas = Plantas.objects.all().filter(cod_tipo_planta__nombre='FLORES')
+for planta in plantas:
+    print(f"{planta.descripcion} --- {planta.cod_tipo_planta.nombre}")
+
+# EJERCICIO 36
+
+ejercicio(36)
+clientes = Clientes.objects.all().filter(cod_localidad__nombre='AREQUITO')
+for cliente in clientes:
+    print(f"{cliente.nombre} {cliente.apellido} --- {cliente.cod_localidad.nombre}")
